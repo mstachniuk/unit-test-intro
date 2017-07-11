@@ -59,6 +59,8 @@ public class FibonacciTest {
     public void shouldReturnEightForSix() {
         // given
         Fibonacci fibonacci = new Fibonacci();
+        Class<? extends Fibonacci> aClass = fibonacci.getClass();
+        Class<Fibonacci> fibonacciClass = Fibonacci.class;
 
         // when
         int result = fibonacci.fibonacci(6);

@@ -21,6 +21,7 @@ public class UserService {
     public double calculateAvgAgeOfUsers() {
         Set<User> users = userDao.getAllUsers();
         LocalDate today = dateProvider.now();
+//        LocalDate today = LocalDate.now();
         // Java functional version
         long sum = users.stream()
                 .map(u -> u.getBirthday())
@@ -32,7 +33,7 @@ public class UserService {
 //            long yearsBetween = ChronoUnit.YEARS.between(user.getBirthday(), today);
 //            sum = sum + yearsBetween;
 //        }
-        return  sum / users.size();
+        return ((double) sum) / users.size();
     }
 
 
