@@ -28,6 +28,24 @@ public class StoreUserServiceTest {
         assertEquals("John", actualUser.getName());
         assertEquals(LocalDate.of(2010, 07, 11), actualUser.getBirthday());
     }
+
+    @Test
+    public void shouldSaveUser2() {
+        // given
+        MyUserDao userDao = new MyUserDao();
+        StoreUserService service = new StoreUserService(userDao);
+
+        // when
+        service.storeUser("Max", LocalDate.of(2010, 07, 13));
+
+        // then
+        User actualUser = userDao.getUser();
+        assertEquals("Max", actualUser.getName());
+        assertEquals(LocalDate.of(2010, 07, 13), actualUser.getBirthday());
+    }
+
+
+
 }
 
 class MyUserDao extends UserDao {

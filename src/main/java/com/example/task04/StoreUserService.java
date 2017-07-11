@@ -20,4 +20,9 @@ public class StoreUserService {
         userDao.save(user);
     }
 
+    public void storeUser(String name, LocalDate birthday) {
+        User user = new User(name, birthday);
+        userDao.save(user);
+    }
+
 }
