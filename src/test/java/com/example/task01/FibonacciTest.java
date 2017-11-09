@@ -1,9 +1,10 @@
 package com.example.task01;
 
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FibonacciTest {
 
@@ -67,5 +68,20 @@ public class FibonacciTest {
 
         // then
         assertEquals(8, result);
+    }
+
+    @ParameterizedTest(name = "case {index}: fib({0}) => {1}")
+    @CsvSource({"0, 0",
+            "1, 1",
+            "2, 1",
+            "3, 2",
+            "4, 3",
+            "10, 55" })
+    public void shouldTestFibonacciCombinations(int n, int expected) {
+        Fibonacci fibonacci = new Fibonacci();
+
+        double result = fibonacci.fibonacci(n);
+
+        assertEquals(expected, result, 0.0000001);
     }
 }

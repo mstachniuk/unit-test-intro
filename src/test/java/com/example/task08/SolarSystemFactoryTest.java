@@ -28,7 +28,7 @@ public class SolarSystemFactoryTest {
         PlanetAssert.assertThat(mercury).hasName("Mercury")
                 .hasRotation(RotationDirection.LEFT)
                 .hasDiameterInMeter("4879400")
-                .containsOnlyGases(Gas.OXYGEN, Gas.SODIUM)
+                .containsOnlyGases(Gas.OXYGEN, Gas.SODIUM, Gas.HYDROGEN)
                 .containsOnlyGases(new Gas [] {Gas.OXYGEN, Gas.SODIUM, Gas.HYDROGEN});
     }
 }
