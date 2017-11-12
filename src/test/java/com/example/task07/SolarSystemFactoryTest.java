@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static com.example.universum.RotationDirection.LEFT;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class SolarSystemFactoryTest {
 
@@ -26,12 +28,20 @@ public class SolarSystemFactoryTest {
         // then
         Planet mercury = innerPlanets.get(0);
         assertEquals("Mercury", mercury.getName());
-        assertEquals(RotationDirection.LEFT, mercury.getRotationDirection());
+        assertEquals(LEFT, mercury.getRotationDirection());
         assertEquals(new BigDecimal("4879400"), mercury.getDiameter().getMeter());
         assertEquals(new BigDecimal("87.96935"), mercury.getSiderealYear().inEarthDays());
         assertEquals(3.701, mercury.getAcceleration(), 0.01);
         Set<Gas> mercuryGases = Stream.of(Gas.OXYGEN, Gas.SODIUM, Gas.HYDROGEN).collect(Collectors.toSet());
         assertEquals(mercuryGases, mercury.getAtmosphereGases());
+
+
+        assertThat(mercury.getName()).isEqualTo("Mercury");
+        assertThat(mercury.getRotationDirection()).isEqualTo(LEFT);
+        assertThat(mercury.getDiameter().getMeter()).isEqualTo("4879400");
+        assertThat(mercury.getSiderealYear().inEarthDays()).isEqualTo("87.96935");
+        assertThat(mercury.getAcceleration()).isEqualTo(3.701);
+        assertThat(mercury.getAtmosphereGases()).containsExactlyInAnyOrder(Gas.OXYGEN, Gas.SODIUM, Gas.HYDROGEN);
 
         Planet venus = innerPlanets.get(1);
         assertEquals("Venus", venus.getName());
@@ -44,7 +54,7 @@ public class SolarSystemFactoryTest {
 
         Planet earth = innerPlanets.get(2);
         assertEquals("Earth", earth.getName());
-        assertEquals(RotationDirection.LEFT, earth.getRotationDirection());
+        assertEquals(LEFT, earth.getRotationDirection());
         assertEquals(new BigDecimal("12756273"), earth.getDiameter().getMeter());
         assertEquals(new BigDecimal("365.256363004"), earth.getSiderealYear().inEarthDays());
         assertEquals(9.806_65, earth.getAcceleration(), 0.01);
@@ -53,7 +63,7 @@ public class SolarSystemFactoryTest {
 
         Planet mars = innerPlanets.get(3);
         assertEquals("Mars", mars.getName());
-        assertEquals(RotationDirection.LEFT, mars.getRotationDirection());
+        assertEquals(LEFT, mars.getRotationDirection());
         assertEquals(new BigDecimal("6804900"), mars.getDiameter().getMeter());
         assertEquals(new BigDecimal("686.9601"), mars.getSiderealYear().inEarthDays());
         assertEquals(3.69, mars.getAcceleration(), 0.01);
