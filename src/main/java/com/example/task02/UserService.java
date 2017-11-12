@@ -20,7 +20,7 @@ public class UserService {
         Set<User> users = userDao.getAllUsers();
         long sum = users.stream()
                 .map(u -> u.getName())
-                .map(n -> n.equals(name))
+                .filter(n -> n.equals(name))
                 .count();
         return  sum;
     }
