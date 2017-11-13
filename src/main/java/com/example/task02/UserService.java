@@ -11,28 +11,18 @@ import java.util.Set;
 public class UserService {
 
     private UserDao userDao;
-    private DateProvider dateProvider;
 
-    public UserService(UserDao userDao, DateProvider dateProvider) {
+    public UserService(UserDao userDao) {
         this.userDao = userDao;
-        this.dateProvider = dateProvider;
     }
 
-    public double calculateAvgAgeOfUsers() {
+    public long calculateNumberOfUsersUsersByName(String name) {
         Set<User> users = userDao.getAllUsers();
-        LocalDate today = dateProvider.now();
-        // Java functional version
         long sum = users.stream()
-                .map(u -> u.getBirthday())
-                .mapToLong(b -> ChronoUnit.YEARS.between(b, today))
-                .sum();
-        // Java imperative version
-//        long sum = 0;
-//        for (User user : users) {
-//            long yearsBetween = ChronoUnit.YEARS.between(user.getBirthday(), today);
-//            sum = sum + yearsBetween;
-//        }
-        return  sum / users.size();
+                .map(u -> u.getName())
+                .filter(n -> n.equals(name))
+                .count();
+        return  sum;
     }
 
 
