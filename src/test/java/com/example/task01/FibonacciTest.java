@@ -1,9 +1,13 @@
 package com.example.task01;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(JUnitParamsRunner.class)
 public class FibonacciTest {
     @Test
     public void shouldReturnZeroForZero() {
@@ -66,4 +70,18 @@ public class FibonacciTest {
         // then
         assertEquals(8, result);
     }
+
+    @Test
+    @Parameters({"0, 0",
+            "1, 1",
+            "2, 1",
+            "3, 2",
+            "4, 3",
+            "10, 55"})
+    public void shouldTestFibonacci(int n, int expected) {
+        Fibonacci fibonacci = new Fibonacci();
+        double result = fibonacci.fibonacci(n);
+        assertEquals(expected, result, 0.0000001);
+    }
+
 }
